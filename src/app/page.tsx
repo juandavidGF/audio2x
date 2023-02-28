@@ -1,3 +1,4 @@
+"use client"; // this is a client component 👈🏽
 // import styles from '@/styles/Home.module.css'
 import styles from './page.module.css'
 import { Inter } from '@next/font/google'
@@ -5,15 +6,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { useUser } from '@auth0/nextjs-auth0/client';
-"use client"; // this is a client component 👈🏽
+// import { useUser } from '@auth0/nextjs-auth0/client';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
 	const [response, setResponse] = useState();
-	const { user, error, isLoading } = useUser();
+	// const { user, error, isLoading } = useUser();
+	const [user, setUser] = useState(true);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -55,7 +56,7 @@ export default function Home() {
 					</div>
 					)
 				}
-				{user ? (<Link href="/api/auth/logout">Logout</Link>) : null}
+				{/* {user ? (<Link href="/api/auth/logout">Logout</Link>) : null} */}
       </main>
     </>
   )
