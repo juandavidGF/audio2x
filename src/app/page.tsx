@@ -16,7 +16,7 @@ export default function Home() {
 	// const { user, error, isLoading } = useUser();
 	const [user, setUser] = useState(true);
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		const text = e.target.text.value;
 		const res = await fetch('/api/yt-transcribe', {
