@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client';
+"use client"; // this is a client component 👈🏽
 
 const inter = Inter({ subsets: ['latin'] })
 
