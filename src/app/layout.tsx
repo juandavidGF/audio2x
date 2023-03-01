@@ -1,4 +1,5 @@
 import './globals.css'
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,8 +12,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+		<UserProvider>
+			<html lang="en">
+				<body>
+					{children}
+				</body>
+			</html>
+		</UserProvider>
   )
 }

@@ -6,15 +6,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-// import { useUser } from '@auth0/nextjs-auth0/client';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
 	const [response, setResponse] = useState();
-	// const { user, error, isLoading } = useUser();
-	const [user, setUser] = useState(true);
+	const { user, error, isLoading } = useUser();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -32,6 +31,9 @@ export default function Home() {
 		setResponse(data.transcription);
 	}
 
+	// if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>{error.message}</div>;
+
   return (
     <>
       <Head>
@@ -42,6 +44,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
 				<h1>Transcribe a youtube video</h1>
+				{console.log('user', user)}
 				{user ?
 					(<form onSubmit={handleSubmit}>
 						<div className="upload-image">
@@ -57,7 +60,8 @@ export default function Home() {
 					)
 				}
 				<div>{ response }</div>
-				{/* {user ? (<Link href="/api/auth/logout">Logout</Link>) : null} */}
+				<Link href="/api/auth/login"><button>Login</button></Link>
+				{user ? (<Link href="/api/auth/logout">Logout</Link>) : null}
       </main>
     </>
   )
