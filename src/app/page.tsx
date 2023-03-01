@@ -56,6 +56,7 @@ export default function Home() {
 					</div>
 					)
 				}
+				<div>{ response }</div>
 				{/* {user ? (<Link href="/api/auth/logout">Logout</Link>) : null} */}
       </main>
     </>
