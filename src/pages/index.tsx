@@ -38,7 +38,7 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main}>
-				<h1>Transcribe a youtube video</h1> 
+				<h1>Transcribe a youtube video</h1>
 				{user ?
 					(<form onSubmit={handleSubmit}>
 						<div className="upload-image">
