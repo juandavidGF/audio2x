@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
@@ -39,22 +38,22 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main}>
-				<h1>Transcribe a youtube video</h1>
-					{user ?
-						(<form onSubmit={handleSubmit}>
-							<div className="upload-image">
-								<input type="text" id="text" name="text"/>
-								<button type="submit">Send</button>
-							</div>
-						</form>)
-						: (
-						<div>
+				<h1>Transcribe a youtube video</h1> 
+				{user ?
+					(<form onSubmit={handleSubmit}>
+						<div className="upload-image">
 							<input type="text" id="text" name="text"/>
-							<Link href="/api/auth/login"><button>Send</button></Link>
+							<button type="submit">Send</button>
 						</div>
-						)
-					}
-					{user ? (<Link href="/api/auth/logout">Logout</Link>) : null}
+					</form>)
+					: (
+						<div>
+						<input type="text" id="text" name="text"/>
+						<Link href="/api/auth/login"><button>Send</button></Link>
+					</div>
+					)
+				}
+				{user ? (<Link className={styles.logout} href="/api/auth/logout"><u>Logout</u></Link>) : null}
       </main>
     </>
   )
