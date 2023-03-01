@@ -41,13 +41,15 @@ export default function Home() {
 				{user ? (<div className={styles.logout}><Link href="/api/auth/logout"><u>Logout</u></Link></div>) : null}
 				<h1>Transcribe a youtube video</h1>
 				{user ?
-					(<form onSubmit={handleSubmit}>
-						<div className="upload-image">
-							<label htmlFor="text">insert the url: </label>
-							<input type="text" id="text" name="text" placeholder='ex: https://www.youtube.com/watch?v=ugIuHWc6Nuc'/>
-							<button type="submit">Transcribe</button>
-						</div>
-					</form>)
+					(<div>
+						<form onSubmit={handleSubmit}>
+							<div className="upload-image">
+								<label htmlFor="text">insert the url: </label>
+								<input type="text" id="text" name="text" placeholder='ex: https://www.youtube.com/watch?v=ugIuHWc6Nuc'/>
+								<button type="submit">Transcribe</button>
+							</div>
+						</form>
+					</div>)
 					: 
 					(<div>
 						<input type="text" id="text" name="text"/>
