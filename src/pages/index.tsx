@@ -60,16 +60,17 @@ export default function Home() {
 						<Link href="/api/auth/login"><button>Transcribe</button></Link>
 					</div>)
 				}
-				<div className={styles.transcription}>
-					{response?.prediction.map((item: Object) =>
-						{
+				{response ? 
+					<div className={styles.transcription}>
+						{response.prediction.map((item: Object) => {
 							return (<div key={item.time_begin}>
 								<p>{item.time_begin}</p>
 								<p>{item.transcription}</p>
 							</div>)
-						}
-					)}
-				</div>
+						})}
+					</div>
+					: null
+				}
       </main>
     </>
   )
