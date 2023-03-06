@@ -15,17 +15,21 @@ export default function Home() {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		const text = e.target.text.value;
-		const res = await fetch('/api/yt-transcribe', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ link: text }),
-		});
-		console.log('fe#res', res);
-		const data = await res.json();
-		console.log('data: ', data);
-		setResponse(data);
+		try {
+			const res = await fetch('/api/yt-transcribe', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ link: text }),
+			});
+			const data = await res.json();
+			console.log('data: ', data);
+
+			setResponse(data);
+		} catch (err) {
+			console.log('err', err);
+		}
 	}
 
 
@@ -56,6 +60,16 @@ export default function Home() {
 						<Link href="/api/auth/login"><button>Transcribe</button></Link>
 					</div>)
 				}
+				<div className={styles.transcription}>
+					{response?.prediction.map((item: Object) =>
+						{
+							return (<div key={item.time_begin}>
+								<p>{item.time_begin}</p>
+								<p>{item.transcription}</p>
+							</div>)
+						}
+					)}
+				</div>
       </main>
     </>
   )

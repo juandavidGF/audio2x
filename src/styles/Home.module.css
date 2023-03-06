@@ -47,6 +47,12 @@
 	background-color: #eaeaea;
 }
 
+.transcription {
+	background-color: white;
+	padding: 0.5rem;
+	margin: 1rem;
+}
+
 @media (min-width: 600px) {
 	.main {
 		justify-content: initial;
