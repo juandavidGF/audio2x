@@ -26,8 +26,6 @@
 	margin-top: 1rem;
 	padding: 0.3rem 0.2rem;
 	width: 100%;
-	background-color: black;
-	color: white;
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -39,16 +37,14 @@
 }
 .logout a {
 	padding: 5px 13px;
-	background-color: white;
 	margin: 0 3px 0 0;
-	border-radius: 5px;
 }
 .logout a:hover {
 	background-color: #eaeaea;
 }
 
 .transcription {
-	background-color: white;
+	border: solid 1px black;
 	padding: 0.5rem;
 	margin: 1rem;
 }

@@ -48,7 +48,7 @@ export default function Home() {
 					(<div>
 						<form onSubmit={handleSubmit}>
 							<div className="upload-image">
-								<label htmlFor="text">insert the url: </label>
+								<label htmlFor="text">video url: </label>
 								<input type="text" id="text" name="text" placeholder='ex: https://www.youtube.com/watch?v=ugIuHWc6Nuc'/>
 								<button type="submit">Transcribe</button>
 							</div>
