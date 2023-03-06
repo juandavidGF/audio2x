@@ -15,7 +15,6 @@ export default async function handler(req, res) {
 			form.append('language_behaviour', 'automatic single language');
 			form.append('output_format', 'json');
 
-			console.log('handler#form', form)
 			const response = await axios.post(
 				endpoint,
 					form,
@@ -28,9 +27,8 @@ export default async function handler(req, res) {
 						}
 					}
 			);
-			console.log('handler#response', response.data);
-			console.log('handler#response', response.message);
-			return res.status(200).json({ transcription: response });
+			console.log('handler#response.data: ', response.data)
+			return res.status(200).json(response.data);
 		} catch (error) {
 			console.log('handler#err', error);
 			return res.status(500);

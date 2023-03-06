@@ -29,6 +29,7 @@
 	background-color: black;
 	color: white;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .logout {

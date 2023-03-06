@@ -22,10 +22,10 @@ export default function Home() {
 			},
 			body: JSON.stringify({ link: text }),
 		});
-		console.log('res', res);
+		console.log('fe#res', res);
 		const data = await res.json();
-		console.log(data);
-		setResponse(data.transcription);
+		console.log('data: ', data);
+		setResponse(data);
 	}
 
 
