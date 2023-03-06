@@ -62,7 +62,7 @@ export default function Home() {
 				}
 				{response ? 
 					<div className={styles.transcription}>
-						{response.prediction.map((item: Object) => {
+						{response.prediction.map((item) => {
 							return (<div key={item.time_begin}>
 								<p>{item.time_begin}</p>
 								<p>{item.transcription}</p>
