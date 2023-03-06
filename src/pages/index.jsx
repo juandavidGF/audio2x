@@ -11,10 +11,12 @@ export default function Home() {
 
 	const { user, error, isLoading } = useUser();
 	const [response, setResponse] = useState();
+	const [spinner, setSpinner] = useState(false);
 
-	const handleSubmit = async (e: any) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const text = e.target.text.value;
+		setSpinner(true)
 		try {
 			const res = await fetch('/api/yt-transcribe', {
 				method: 'POST',
@@ -24,11 +26,12 @@ export default function Home() {
 				body: JSON.stringify({ link: text }),
 			});
 			const data = await res.json();
-			console.log('data: ', data);
 
 			setResponse(data);
+			setSpinner(false)
 		} catch (err) {
 			console.log('err', err);
+			setSpinner(false)
 		}
 	}
 
@@ -43,7 +46,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
 				{user ? (<div className={styles.logout}><Link href="/api/auth/logout"><u>Logout</u></Link></div>) : null}
-				<h1>Transcribe a youtube video</h1>
+				<h1>Transcribe youtube videos</h1>
 				{user ?
 					(<div>
 						<form onSubmit={handleSubmit}>
@@ -59,6 +62,11 @@ export default function Home() {
 						<input type="text" id="text" name="text"/>
 						<Link href="/api/auth/login"><button>Transcribe</button></Link>
 					</div>)
+				}
+				{spinner ? (
+					<p>Processing ... </p>
+				) 
+				: null
 				}
 				{response ? 
 					<div className={styles.transcription}>
