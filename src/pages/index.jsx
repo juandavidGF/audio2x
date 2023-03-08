@@ -10,29 +10,70 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
 
 	const { user, error, isLoading } = useUser();
-	const [response, setResponse] = useState();
+	const [arrTranscription, setArrTranscription] = useState();
+	const [transcription, setTranscription] = useState();
+	const [summary, setSummary] = useState();
 	const [spinner, setSpinner] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const text = e.target.text.value;
-		setSpinner(true)
-		try {
-			const res = await fetch('/api/yt-transcribe', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ link: text }),
-			});
-			const data = await res.json();
 
-			setResponse(data);
+		const text = e.target.text.value;
+		setSpinner(true);
+		
+		try {
+			const arrTranscriptionLocal = await transcribeLink(text)
+
+			summarize(arrTranscriptionLocal)
+			
 			setSpinner(false)
 		} catch (err) {
 			console.log('err', err);
-			setSpinner(false)
+			setSpinner(false);
 		}
+	}
+
+	const transcribeLink = async (text) => {
+		const res = await fetch('/api/yt-transcribe', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ link: text, testMode: false }),
+		});
+
+		const data = await res.json();
+		const arrTranscription = await extractTranscriptions(data);
+		
+		setTranscription(data);
+		setArrTranscription(arrTranscription);
+
+		return arrTranscription;
+	}
+
+	const summarize = async (arrTranscriptionLocal) => {
+
+		// console.log('fe#arrTranscriptionLocal', arrTranscriptionLocal);
+
+		const res = await fetch('/api/summarize', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ document: arrTranscriptionLocal, testMode: false }),
+		});
+		const summary = await res.json();
+		setSummary(summary);
+	}
+
+	const extractTranscriptions = async (response) => {
+		let extractTranscription = [];
+		const prediction = response.prediction;
+		for(let item in prediction) {
+			// extractTranscription.push(prediction[item].time_begin);
+			extractTranscription.push(prediction[item].transcription);
+		}
+		return extractTranscription;
 	}
 
 
@@ -68,17 +109,28 @@ export default function Home() {
 				) 
 				: null
 				}
-				{response ? 
-					<div className={styles.transcription}>
-						{response.prediction.map((item) => {
-							return (<div key={item.time_begin}>
-								<p>{item.time_begin}</p>
-								<p>{item.transcription}</p>
-							</div>)
-						})}
-					</div>
-					: null
-				}
+
+				<div className={styles.contentTranscription}>
+					{summary ? (
+						<div>
+							<h5>Summary</h5>
+							<p>{ summary.text }</p>
+						</div>
+					) : null
+					}
+					{transcription ? 
+						<div className={styles.transcription}>
+							{transcription.prediction.map(item => {
+								return (<div key={item.time_begin}>
+									<p>{item.time_begin}</p>
+									<p>{item.transcription}</p>
+									{/* <p>{item}</p> */}
+								</div>)
+							})}
+						</div>
+						: null
+					}
+				</div>
       </main>
     </>
   )

@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: initial;
   align-items: center;
   min-height: 100vh;
 }
@@ -29,7 +29,6 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-
 .logout {
 	display: flex;
 	flex-direction: row-reverse;
@@ -45,14 +44,16 @@
 
 .transcription {
 	border: solid 1px black;
-	padding: 0.5rem;
 	margin: 1rem;
+	max-width: 60rem;
+}
+
+.contentTranscription {
+	padding: 1rem;
+	max-width: 60rem;
 }
 
 @media (min-width: 600px) {
-	.main {
-		justify-content: initial;
-	}
 	.main form {
 		width: auto;
 		padding: 0;
