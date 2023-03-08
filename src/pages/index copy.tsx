@@ -13,38 +13,27 @@ export default function Home() {
 	const [arrTranscription, setArrTranscription] = useState();
 	const [transcription, setTranscription] = useState();
 	const [summary, setSummary] = useState();
-	const [conversation, setConversation] = useState([]);
 	const [spinner, setSpinner] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		setSpinner(true);
-
-		setSummary();
-		setTranscription();
 		const text = e.target.text.value;
+		setSpinner(true);
 		
 		try {
 			const arrTranscriptionLocal = await transcribeYTVideo(text);
 
-			const summaryResponse = await makeQuestion(
-				arrTranscriptionLocal, 
-				"make a summarization in 4 points", 
-				true
-			);
-			console.log('summaryResponse', summaryResponse)
-			setSummary(summaryResponse);
+			summarize(arrTranscriptionLocal);
 			
 			setSpinner(false);
-			e.target.text.value = '';
 		} catch (err) {
 			console.log('err', err);
 			setSpinner(false);
 		}
 	}
 
-	const transcribeYTVideo = async (text) => {
+	const transcribeYTVideo = async (text: string) => {
 		const res = await fetch('/api/yt-transcribe', {
 			method: 'POST',
 			headers: {
@@ -62,6 +51,22 @@ export default function Home() {
 		return arrTranscription;
 	}
 
+	const summarize = async (arrTranscriptionLocal) => {
+
+		// console.log('fe#arrTranscriptionLocal', arrTranscriptionLocal);
+
+		const res = await fetch('/api/summarize', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ document: arrTranscriptionLocal, testMode: true }),
+		});
+		console.log('res: ', res);
+		const summary = await res.json();
+		setSummary(summary);
+	}
+
 	const extractTranscriptions = async (response) => {
 		let extractTranscription = [];
 		const prediction = response.prediction;
@@ -71,36 +76,7 @@ export default function Home() {
 		}
 		return extractTranscription;
 	}
-	
-	
-	const handleSubmitChat = async (e) => {
-		e.preventDefault();
-		const question = e.target.question.value;
 
-		const answer = await makeQuestion(arrTranscription, question, false);
-
-		setConversation(conversation => [...conversation, {
-			question: question,
-			answer: answer.text
-		}]);
-	}
-
-
-	const makeQuestion = async (arrTranscriptionLocal, question, test) => {
-		const res = await fetch('/api/question', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-				document: arrTranscriptionLocal, 
-				question: question,
-				testMode: test
-			}),
-		});
-		const answer = await res.json();
-		return answer;
-	}
 
   return (
     <>
@@ -134,28 +110,7 @@ export default function Home() {
 				) 
 				: null
 				}
-				{transcription ? (
-					<form onSubmit={handleSubmitChat}>
-						<div className="upload-image">
-							<label htmlFor="question">Do a question </label>
-							<input type="text" id="question" name="question" />
-							<button type="submit">ask</button>
-						</div>
-					</form>
-				) : null
-				}
-				{(conversation.length > 0) ? (
-					conversation.map((item, index) => {
-						return (
-							<div key={index}>
-								<p>user: { item.question }</p>
-								<p>xAssistant: { item.answer }</p>
-							</div>
-						)
-					})
-				)
-				: null
-				}
+
 				<div className={styles.contentTranscription}>
 					{summary ? (
 						<div>
@@ -164,7 +119,7 @@ export default function Home() {
 						</div>
 					) : null
 					}
-					{transcription ?
+					{transcription ? 
 						<div className={styles.transcription}>
 							{transcription.prediction.map(item => {
 								return (<div key={item.time_begin}>

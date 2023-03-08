@@ -10,29 +10,30 @@ export default async function handler(req, res) {
 	const { body, method } = req;
 	const document = body.document;
 	const testMode = body.testMode;
+	const question = body.question;
 
 	if(method == "POST") {
-		let summary = {};
+		let answer = {};
 		try {
 			if(testMode) {
-				console.log('summarize#testModexxxxxxxx');
-				summary = {
-					text: " Dan Lewis is using TrueVoice real-time translation to communicate with Adam and Lewis. The weather in Seattle is very cold, but not raining. Dan's puppy has learned how to fetch and loves to play."
+				answer = {
+					text: " 1. Connect the dots in your life by following your curiosity and intuition. 2. Find what you love and strive for great work. 3. Remember that you are going to die to help make the big decisions in life. 4. Stay hungry and stay foolish."
 				}
 			} else {
 				let docs = [];
 				console.log('summarize#document', document);
 				for(let item of document) {
+					// TODO concatenate the array
 					docs.push(new Document({ pageContent: item}));
 				}
-				summary = await chain.call({
+				answer = await chain.call({
 					input_documents: docs,
-					question: "make a summarization in 4 points",
+					question: question,
 				});
-				console.log("summarize#prodMode#res", summary);
+				// console.log("summarize#prodMode#res", answer);
 			}
 
-			res.status(200).json(summary);
+			res.status(200).json(answer);
 		} catch (error) {
 			console.log('summarize#handler#err', error);
 			return res.status(500);
