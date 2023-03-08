@@ -55,15 +55,15 @@ export default function Home() {
 
 		// console.log('fe#arrTranscriptionLocal', arrTranscriptionLocal);
 
-		const res = await fetch('/api/summarize', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ document: arrTranscriptionLocal, testMode: false }),
-		});
-		const summary = await res.json();
-		setSummary(summary);
+		// const res = await fetch('/api/summarize', {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 	},
+		// 	body: JSON.stringify({ document: arrTranscriptionLocal, testMode: false }),
+		// });
+		// const summary = await res.json();
+		// setSummary(summary);
 	}
 
 	const extractTranscriptions = async (response) => {
