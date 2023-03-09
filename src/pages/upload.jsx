@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import { useState } from 'react'
 import Link from 'next/link'
+import styles from '@/styles/Upload.module.css'
 // import FormData from 'form-data';
 // import fs from 'fs';
 
@@ -116,17 +117,15 @@ export default function Upload() {
 	}
 
 	return (
-		<div className="content">
+		<div className={styles.content}>
 			{user && (
 				<div>
-					<div className="how-to">
-					</div>
 					<div>
 						{/* <img src={user.picture} alt={user.name} /> */}
 						{errorUpload && <p>{errorUpload}</p>}
 						{submitting && <p>{progress}%</p>}
 						<form onSubmit={handleSubmit}>
-							<div className="upload-image">
+							<div className={styles.form}>
 								<h3>Upload files:</h3>
 								{/* <input type="file" onChange={handleChange} id="files" name="files" multiple/> */}
 								<input type="file" onChange={handleChange} id="file" name="file"/>
@@ -136,18 +135,6 @@ export default function Upload() {
 					</div>
 				</div>
 			)}
-			{modalOpen ?
-				<div className="modal">
-					<div className="modal-content">
-						<span onClick={() => handleGoPaymentClose()} className="close">&times;</span>
-						<div>
-							<p>We&apos;re having issues with the payment method ... We&apos;ll send an email to complete the payment</p>
-							<button onClick={() => handleGoPaymentClose()}>Ok</button>
-						</div>
-					</div>
-				</div>
-				: null
-			}
 		</div>
   );
 }

@@ -1,0 +1,30 @@
+.content {
+	margin: auto;
+	max-width: 1024px;
+	display: flex;
+	flex-direction: column;
+	justify-content: initial;
+	align-items: center;
+	min-height: 100vh;
+}
+
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-content: space-between;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+.form h3 {
+	margin: 1.5rem 0;
+}
+
+.form input {
+	margin: 0.5rem 0;
+}
+
+.form button {
+	padding:  0 0.2rem;
+}
