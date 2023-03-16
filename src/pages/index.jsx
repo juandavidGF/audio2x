@@ -35,6 +35,23 @@ export default function Home() {
 		}]);
 	}
 
+
+	const makeQuestion = async (arrTranscriptionLocal, question, test) => {
+		const res = await fetch('/api/question', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ 
+				document: arrTranscriptionLocal, 
+				question: question,
+				testMode: test
+			}),
+		});
+		const answer = await res.json();
+		return answer;
+	}
+	
 	const handleSuscription = async (e) => {
 		e.preventDefault();
 		const email = e.target.email.value;
