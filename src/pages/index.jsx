@@ -23,34 +23,34 @@ export default function Home() {
 
 	const { t } = useTranslation('common');
 	
-	const handleSubmitChat = async (e) => {
-		e.preventDefault();
-		const question = e.target.question.value;
+	// const handleSubmitChat = async (e) => {
+	// 	e.preventDefault();
+	// 	const question = e.target.question.value;
 
-		const answer = await makeQuestion(arrTranscription, question, false);
+	// 	const answer = await makeQuestion(arrTranscription, question, false);
 
-		setConversation(conversation => [...conversation, {
-			question: question,
-			answer: answer.text
-		}]);
-	}
+	// 	setConversation(conversation => [...conversation, {
+	// 		question: question,
+	// 		answer: answer.text
+	// 	}]);
+	// }
 
 
-	const makeQuestion = async (arrTranscriptionLocal, question, test) => {
-		const res = await fetch('/api/question', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ 
-				document: arrTranscriptionLocal, 
-				question: question,
-				testMode: test
-			}),
-		});
-		const answer = await res.json();
-		return answer;
-	}
+	// const makeQuestion = async (arrTranscriptionLocal, question, test) => {
+	// 	const res = await fetch('/api/question', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify({ 
+	// 			document: arrTranscriptionLocal, 
+	// 			question: question,
+	// 			testMode: test
+	// 		}),
+	// 	});
+	// 	const answer = await res.json();
+	// 	return answer;
+	// }
 	
 	const handleSuscription = async (e) => {
 		e.preventDefault();
@@ -70,9 +70,6 @@ export default function Home() {
 	}
 
   return (
-
-
-
     <>
       <Head>
         <title>captions multi-language</title>
@@ -84,7 +81,11 @@ export default function Home() {
 				<h1 className={styles.title}>{t('title')}</h1>
 				<p>{t('p2')}</p>
 				<p>{t('p3')}</p>
-				<form action={handleSuscription}></form>
+				<form action={handleSuscription}>
+					<input type="email" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+					<button className={styles.suscribe} type="submit">{t('cta-button')} </button>
+					<div id='status'></div>
+				</form>
       </main>
     </>
   )
