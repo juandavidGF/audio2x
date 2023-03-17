@@ -28,8 +28,6 @@
 }
 
 .formContainer {
-	/* background-color: white; */
-	/* border: 3 solid black; */
 	margin: auto;
 	border-radius: 15px;
 	padding: 2rem;
@@ -96,5 +94,12 @@
 		width: 100%;
 		padding: 3rem;
 		height: 100%;
+	}
+	.formContainer {
+		padding: 0;
+	}
+
+	.form { 
+		width: 100%;
 	}
 }
