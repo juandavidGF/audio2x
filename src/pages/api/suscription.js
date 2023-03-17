@@ -4,13 +4,10 @@ sgMail.setApiKey(process.env.API_KEY_SENDGRID);
 export default async function handler(req, res) {
 
 	if(req.method == "POST") {
-		const { email, appName } = req.body;
+		const { name, email, appName } = req.body;
 
-		console.log('handler#email', email);
-		console.log('handler#appName', appName);
-
-		const txt = `${email} have suscribed to ${appName}`
-		const subject = `${appName} | ${email}`;
+		const txt = `${appName} sing-up -> ${email}`
+		const subject = `${appName} | ${email} | ${name}`;
 
 		const msg = {
 			to: 'juanchoda12@gmail.com', // Recipent
