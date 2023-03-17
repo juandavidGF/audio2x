@@ -19,6 +19,8 @@ export async function getStaticProps({ locale }) {
 export default function Home() {
 
 	const [start, setStarted] = useState(false);
+	const [suscribted, setSuscribted] = useState(false);
+
 	const { t } = useTranslation('common');
 	
 	// const handleSubmitChat = async (e) => {
@@ -78,6 +80,7 @@ export default function Home() {
 		console.log(data);
 		
 		if(data.success === 'Ok') {
+			setSuscribted(true);
 			document.getElementById('status').style.color  = "green"
 			document.getElementById('status').innerHTML = 'Successful Subscription';
 		} else {
@@ -102,12 +105,14 @@ export default function Home() {
 				<div className={styles.one}>
 					{start ? (
 						<div className={styles.formContainer}>
-							<form className={styles.form} onSubmit={handleSuscription}>
-								<input type="text" name="name" placeholder="Full Name"/>
-								<input type="email" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
-								<button className={styles.suscribe} type="submit">Sing Up</button>
-								<div id='status'></div>
-							</form>
+							{!suscribted ? (
+								<form className={styles.form} onSubmit={handleSuscription}>
+									<input type="text" name="name" placeholder="Full Name"/>
+									<input type="email" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+									<button className={styles.suscribe} type="submit">Sing Up</button>
+								</form>
+							) : null}
+							<div id='status'></div>
 						</div>
 					) : null}
 				</div>

@@ -95,6 +95,9 @@
 		padding: 3rem;
 		height: 100%;
 	}
+	.two > * {
+		margin: 1rem 0;
+	}
 	.formContainer {
 		padding: 0;
 	}
