@@ -1,61 +1,85 @@
 .main {
   display: flex;
-  flex-direction: column;
-  justify-content: initial;
-  align-items: center;
-  min-height: 100vh;
+  flex-direction: row;
+	min-height: 100vh;
+	font-family: var(--inter-font);
 }
 
-.main h1 {
-	padding: 1.5rem;
+.one {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 2.5rem;
+}
+.two {
+	width: 40%;
+	background-color: #2A2A26;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding: 4rem;
+	line-height: 1.6;
+	letter-spacing: normal;
 }
 
-.main form {
-	margin-top: 1.5rem;
-	width: 100%;
-	padding: 0 2rem;
+.multiCap {
+	color: #FFE279;
 }
-.main input {
-	margin-top: 3px;
-	width: 100%;
-	padding: 0.2rem 0.2rem;
-	border-radius: 5px;
-	border: 1px solid black
+
+.formContainer {
+	/* background-color: white; */
+	/* border: 3 solid black; */
+	margin: auto;
+	border-radius: 15px;
+	padding: 2rem;
 }
-.main button {
-	margin-top: 1rem;
-	padding: 0.3rem 0.2rem;
-	width: 100%;
-	border-radius: 5px;
+
+.form {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+	width: 80%;
+	margin: 0 auto;
+	padding: 1rem;
+	border-radius: 10px;
+	width: 400px;
+	height: 200px;
+}
+
+.form > * {
+	margin: 0.5rem 0;
+}
+.form input {
+	/* border: 1px solid #FFE279;
+	border-radius: 10px;
+	padding: 0.5rem; */
+	border: none;
+}
+
+
+.getStarted {
+	background-color: #ECEDEE;
+	border-radius: 20px;
+	/* border: 1px solid #FFE279; */
+	border: 1px solid #ECEDEE;
+	padding: 12px;
+}
+
+.getStarted:hover {
+	background-color: #FFE279;
 	cursor: pointer;
 }
-.logout {
-	display: flex;
-	flex-direction: row-reverse;
-	width: 100%;
-}
-.logout a {
-	padding: 5px 13px;
-	margin: 0 3px 0 0;
-}
-.logout a:hover {
-	background-color: #eaeaea;
-}
 
-.transcription {
-	border: solid 1px black;
-	margin: 1rem;
-	max-width: 60rem;
-}
 
-.contentTranscription {
-	padding: 1rem;
-	max-width: 60rem;
-}
-
-@media (min-width: 600px) {
-	.main form {
-		width: auto;
-		padding: 0;
+@media screen and (max-width: 768px) {
+	.main {
+		flex-direction: column;
+	}
+	.one {
+		width: 100%;
+	}
+	.two {
+		width: 100%;
 	}
 }
