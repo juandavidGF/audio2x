@@ -121,7 +121,7 @@ export default function Home() {
 							<h2><span className={styles.multiCap}>multi-cap</span> <span>{t('title')}</span></h2>
 							<p>{t('subtitle')}<span className={styles.multiCap}> {t('span subtitle')}</span>. </p>
 							<div/>
-							<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>{t('get Started')}</button>
+							<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>{t('Get Started')}</button>
 						</div>
 					) : null}
       </main>
