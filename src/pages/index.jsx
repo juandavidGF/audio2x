@@ -118,13 +118,10 @@ export default function Home() {
 				</div>
 					{true ? (
 						<div className={styles.two}>
-							{/* <h1 className={styles.title}>Create multi-language captions</h1> */}
-							<h2><span className={styles.multiCap}>multi-cap</span> <span>generate subtitles in any language for your videos 🎧</span></h2>
-							<p>we enable the borders to disappear and help your influence goes beyond the <span className={styles.multiCap}>language barriers</span>. </p>
-							{/* <p>Crate a global audience</p> */}
+							<h2><span className={styles.multiCap}>multi-cap</span> <span>{t('title')}</span></h2>
+							<p>{t('subtitle')}<span className={styles.multiCap}> {t('span subtitle')}</span>. </p>
 							<div/>
-							{/* <button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>Get Started</button> */}
-							<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>Get Started</button>
+							<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>{t('get Started')}</button>
 						</div>
 					) : null}
       </main>
