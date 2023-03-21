@@ -6,7 +6,7 @@ import sleep from "../utils/sleep";
 const ImageDropZone = ({ onVideoChange }) => {
 
 	const [videoState, setVideoState] = useState("Upload the Video");
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
   const handleDrop = async (e) => {
     e.preventDefault();
