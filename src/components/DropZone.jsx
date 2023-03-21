@@ -6,6 +6,7 @@ import sleep from "../utils/sleep";
 const ImageDropZone = ({ onVideoChange }) => {
 
 	const [videoState, setVideoState] = useState("Upload the Video");
+	const [loading, setLoading] = useState(false);
 
   const handleDrop = async (e) => {
     e.preventDefault();
@@ -15,7 +16,9 @@ const ImageDropZone = ({ onVideoChange }) => {
     if (files.length) {
       const file = files[0];
       if (file.type.startsWith('video/')) {
+				setLoading(true);
 				await sleep(3_000);
+				setLoading(false);
 				setVideoState("Uploaded")
         // Handle the image or video file here
 				onVideoChange(file);
@@ -30,20 +33,37 @@ const ImageDropZone = ({ onVideoChange }) => {
   const handleChange = async (e) => {
     const file = e.target.files[0];
     if (file.type.startsWith('video/')) {
+			setLoading(true);
 			await sleep(3_000);
-			setVideoState("Uploaded")
+			setLoading(false);
+			setVideoState("1 Video Uploaded")
       // Handle the image or video file here
 			onVideoChange(file);
     }
   };
 
   return (
-    <div id="drop-zone" className={styles.dropZone} onClick={handleClick} onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
-      <input type="file" id="file-input" className={styles.fileInput} accept="video/*" onChange={handleChange} />
-      <p>
-				<UploadIcon className="icon" />
-				{videoState}
-			</p>
+    <div 
+			id="drop-zone" 
+			className={styles.dropZone}
+			onClick={handleClick}
+			onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}
+		>
+			{loading ? (
+        <div className={styles.loading}>
+          <div className={styles.circle}></div>
+          <div className={styles.circle}></div>
+          <div className={styles.circle}></div>
+        </div>
+      ) : (
+				<div>
+					<input type="file" id="file-input" className={styles.fileInput} accept="video/*" onChange={handleChange} />
+					<p>
+						<UploadIcon className="icon" />
+						{videoState}
+					</p>
+				</div>
+      )}
     </div>
   );
 };

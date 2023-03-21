@@ -60,7 +60,7 @@ export default function Home() {
 		const email = e.target.email.value;
 		const name = e.target.name.value;
 		if (!email || !name) {
-			alert("pleas complete the form")
+			alert("please complete the form");
 			return;
 		};
 		console.log(email, name);

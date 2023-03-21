@@ -19,7 +19,6 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function Home() {
-
 	const [loading, setLoading] = useState(false);
 	const [video, setVideo] = useState(null);
 
@@ -33,6 +32,17 @@ export default function Home() {
     setVideo(newVideo);
   };
 
+	const handleTranslate = async () => {
+		if(!video) {
+			alert("Please upload a video");
+			return;
+		}
+
+		setLoading(true);
+		sleep(10_000);
+
+	}
+
   return (
     <>
       <Head>
@@ -43,6 +53,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
 				<DropZone onVideoChange={handleVideoChange} />
+				<button onClick={handleTranslate}>Translate</button>
       </main>
     </>
   )

@@ -24,3 +24,78 @@
 .fileInput {
   display: none;
 }
+
+/* .loading {
+  pointer-events: none;
+  position: relative;
+  opacity: 0.7;
+	color: transparent;
+}
+
+.loading::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  animation: rotation 1.5s linear infinite;
+}
+
+.loading .circle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.loading .circle:nth-child(1) {
+  top: 50%;
+  left: 0%;
+  transform: translateY(-50%);
+}
+
+.loading .circle:nth-child(2) {
+  top: 0%;
+  left: 75%;
+  transform: translateY(-50%);
+}
+
+.loading .circle:nth-child(3) {
+  top: 100%;
+  left: 75%;
+  transform: translateY(-50%);
+}
