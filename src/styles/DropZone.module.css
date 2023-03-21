@@ -1,0 +1,26 @@
+/* components/ImageDropZone.css */
+.dropZone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.dropZone:hover {
+  border-color: #0070f3;
+}
+
+.dropZone p {
+  text-align: center;
+  margin: 0;
+	color: grey;
+}
+
+.fileInput {
+  display: none;
+}

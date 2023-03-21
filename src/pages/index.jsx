@@ -4,6 +4,11 @@ import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
+import Router, { withRouter } from 'next/router'
+
+
+const TEST_SINGUP = false;
+
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
@@ -55,6 +60,11 @@ export default function Home() {
 	const handleSuscription = async (e) => {
 		e.preventDefault();
 
+		if(TEST_SINGUP) {
+			Router.push('/app');
+			return;
+		} 
+
 		const email = e.target.email.value;
 		const name = e.target.name.value;
 		if (!email || !name) {
@@ -62,6 +72,7 @@ export default function Home() {
 			return;
 		};
 		console.log(email, name);
+
 
 		const res = await fetch('/api/suscription', {
 			method: 'POST',
@@ -77,7 +88,7 @@ export default function Home() {
 		});
 
 		const data = await res.json();
-		console.log(data);
+		// console.log(data);
 		
 		if(data.success === 'Ok') {
 			setSuscribted(true);
