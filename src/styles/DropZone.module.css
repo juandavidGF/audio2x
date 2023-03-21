@@ -29,8 +29,8 @@
 	/* border: 1px solid #ccc; */
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 25px;
+  height: 25px;
   animation: rotation 1.5s linear infinite;
 }
 
@@ -40,24 +40,24 @@
   height: 16px;
   border-radius: 50%;
   background-color: #000;
-  transform-origin: 32px 32px;
+  transform-origin: 12.5px 12.5px;
 }
 
 .loading .circle:nth-child(1) {
   top: 50%;
-  left: 0%;
+  left: -40%;
   transform: translateY(-50%);
 }
 
 .loading .circle:nth-child(2) {
-  top: 12%; /* Adjusts top position to form an equilateral triangle */
-  left: 75%;
+  top: 0%; /* Adjusts top position to form an equilateral triangle */
+  left: 60%;
   transform: translateY(-50%);
 }
 
 .loading .circle:nth-child(3) {
-  top: 90%; /* Adjusts top position to form an equilateral triangle */
-  left: 75%;
+  top: 100%; /* Adjusts top position to form an equilateral triangle */
+  left: 60%;
   transform: translateY(-50%);
 }
 
