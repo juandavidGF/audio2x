@@ -36,7 +36,7 @@ const ImageDropZone = ({ onVideoChange }) => {
 			setLoading(true);
 			await sleep(3_000);
 			setLoading(false);
-			setVideoState("1 Video Uploaded")
+			setVideoState(" Video Uploaded")
       // Handle the image or video file here
 			onVideoChange(file);
     }
