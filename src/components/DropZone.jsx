@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styles from '@/styles/DropZone.module.css';
 import { Upload as UploadIcon } from "lucide-react";
+import sleep from "../utils/sleep";
 
 const ImageDropZone = ({ onVideoChange }) => {
 
 	const [videoState, setVideoState] = useState("Upload the Video");
 
-
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -15,6 +15,7 @@ const ImageDropZone = ({ onVideoChange }) => {
     if (files.length) {
       const file = files[0];
       if (file.type.startsWith('video/')) {
+				await sleep(3_000);
 				setVideoState("Uploaded")
         // Handle the image or video file here
 				onVideoChange(file);
@@ -26,9 +27,10 @@ const ImageDropZone = ({ onVideoChange }) => {
     document.getElementById('file-input').click();
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const file = e.target.files[0];
     if (file.type.startsWith('video/')) {
+			await sleep(3_000);
 			setVideoState("Uploaded")
       // Handle the image or video file here
 			onVideoChange(file);

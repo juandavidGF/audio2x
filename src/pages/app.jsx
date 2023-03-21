@@ -5,11 +5,10 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import DropZone from "../components/DropZone";
+import sleep from "../utils/sleep";
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export async function getStaticProps({ locale }) {
   return {
@@ -30,21 +29,9 @@ export default function Home() {
 		setStarted(true);
 	}
 
-	const handleVideoChange = (newVideo) => {
+	const handleVideoChange = async (newVideo) => {
     setVideo(newVideo);
   };
-
-	const uploadVideo = async (e) => {
-		e.preventDefault();
-		// const video = e.target.video.value;
-		console.log(e.target)
-		setLoading(true);
-		await sleep(3_000);
-	}
-
-	const handleClick = async () => {
-		await sleep(3_000);
-	}
 
   return (
     <>
@@ -55,19 +42,7 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main}>
-				{video ? (
-					<div className={styles.videoContainer}>
-						<p>Video selected: {video.name}</p>
-						<video
-							src={URL.createObjectURL(video)}
-							controls
-							style={{ maxWidth: '500px', maxHeight: '500px' }}
-						></video>
-					</div>
-					) : (
-						<DropZone onVideoChange={handleVideoChange} />
-					)
-				}
+				<DropZone onVideoChange={handleVideoChange} />
       </main>
     </>
   )
