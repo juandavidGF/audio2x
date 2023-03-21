@@ -39,8 +39,8 @@ export default function Home() {
 		}
 
 		setLoading(true);
-		sleep(10_000);
-
+		await sleep(10_000);
+		setLoading(false);
 	}
 
   return (
@@ -52,7 +52,7 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main}>
-				<DropZone onVideoChange={handleVideoChange} />
+				<DropZone onVideoChange={handleVideoChange} loading={loading} setLoading={setLoading}/>
 				<button onClick={handleTranslate}>Translate</button>
       </main>
     </>
