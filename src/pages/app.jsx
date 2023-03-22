@@ -4,8 +4,8 @@ import styles from '@/styles/App.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
-import DropZone from "../components/DropZone";
-import sleep from "../utils/sleep";
+import DropZone from "../components/DropZone"
+import sleep from "../utils/sleep"
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
