@@ -20,7 +20,7 @@ export async function getStaticProps({ locale }) {
 
 export default function Home() {
 	const [loading, setLoading] = useState(false);
-	const [video, setVideo] = useState(null);
+	const [videoURL, setVideoURL] = useState(null);
 
 	const { t } = useTranslation('common');
 
@@ -29,18 +29,21 @@ export default function Home() {
 	}
 
 	const handleVideoChange = async (newVideo) => {
-    setVideo(newVideo);
+		const urlVideo = URL.createObjectURL(newVideo);
+    setVideoURL(urlVideo);
   };
 
 	const handleTranslate = async () => {
-		if(!video) {
+		if(!videoURL) {
 			alert("Please upload a video");
 			return;
 		}
 
 		setLoading(true);
 		await sleep(10_000);
+		const urlVideo = '/video_with_captions.mp4';
 		setLoading(false);
+		setVideoURL(urlVideo);
 	}
 
   return (
@@ -52,7 +55,7 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main}>
-				<DropZone onVideoChange={handleVideoChange} loading={loading} setLoading={setLoading}/>
+				<DropZone onVideoChange={handleVideoChange} loading={loading} setLoading={setLoading} videoURL={videoURL}/>
 				<button onClick={handleTranslate}>Translate</button>
       </main>
     </>

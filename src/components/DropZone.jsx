@@ -3,7 +3,7 @@ import styles from '@/styles/DropZone.module.css';
 import { Upload as UploadIcon } from "lucide-react";
 import sleep from "../utils/sleep";
 
-const ImageDropZone = ({ onVideoChange, loading, setLoading }) => {
+const ImageDropZone = ({ onVideoChange, loading, setLoading, videoURL }) => {
 
 	const [videoState, setVideoState] = useState("Upload the Video");
 
@@ -54,7 +54,9 @@ const ImageDropZone = ({ onVideoChange, loading, setLoading }) => {
           <div className={styles.circle}></div>
           <div className={styles.circle}></div>
         </div>
-      ) : (
+      ) : videoURL ? (
+				<video src={videoURL} width={320} height={240} controls/>
+			) : (
 				<div>
 					<input type="file" id="file-input" className={styles.fileInput} accept="video/*" onChange={handleChange} />
 					<p>
