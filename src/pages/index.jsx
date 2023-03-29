@@ -65,7 +65,6 @@ export default function Home() {
 		};
 		console.log(email, name);
 
-
 		const res = await fetch('/api/suscription', {
 			method: 'POST',
 			headers: {
@@ -86,7 +85,7 @@ export default function Home() {
 			document.getElementById('status').style.color  = "green"
 			document.getElementById('status').innerHTML = 'Successful Subscription';
 			await sleep(1_000);
-			Router.push('/app');
+			// Router.push('/app');
 		} else {
 			document.getElementById('status').style.color  = "red"
 			document.getElementById('status').innerHTML = 'Error';
@@ -115,8 +114,12 @@ export default function Home() {
 									<input type="email" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
 									<button className={styles.suscribe} type="submit">{t('Sing Up')}</button>
 								</form>
-							) : null}
-							<div id='status'></div>
+							) : (
+								<div>
+									<div>{t('succesful suscription')}</div>
+									<div>{t('high demand')}</div>
+								</div>
+							)}
 						</div>
 					) : null}
 				</div>
