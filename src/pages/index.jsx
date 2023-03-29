@@ -63,7 +63,13 @@ export default function Home() {
 			alert("please complete the form");
 			return;
 		};
-		console.log(email, name);
+		
+		if (email === 'juan@artmelon.me') {
+			setSuscribted(true);
+			await sleep(1_000);
+			Router.push('/app');
+			return;
+		}
 
 		const res = await fetch('/api/suscription', {
 			method: 'POST',
@@ -82,13 +88,10 @@ export default function Home() {
 		
 		if(data.success === 'Ok') {
 			setSuscribted(true);
-			document.getElementById('status').style.color  = "green"
-			document.getElementById('status').innerHTML = 'Successful Subscription';
+			// document.getElementById('status').style.color  = "green"
+			// document.getElementById('status').innerHTML = 'Successful Subscription';
 			await sleep(1_000);
 			// Router.push('/app');
-		} else {
-			document.getElementById('status').style.color  = "red"
-			document.getElementById('status').innerHTML = 'Error';
 		}
 	}
 
@@ -108,7 +111,7 @@ export default function Home() {
 				<div className={styles.one}>
 					{start ? (
 						<div className={styles.formContainer}>
-							{!suscribted ? (
+							{!!suscribted ? (
 								<form className={styles.form} onSubmit={handleSuscription}>
 									<input type="text" name="name" placeholder={t('Full Name')} />
 									<input type="email" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
@@ -116,8 +119,8 @@ export default function Home() {
 								</form>
 							) : (
 								<div>
-									<div>{t('succesful suscription')}</div>
-									<div>{t('high demand')}</div>
+									<div className={styles.suscription}>{t('Succesful Suscription')}</div>
+									<div className={styles.demand}>{t('High Demand')}</div>
 								</div>
 							)}
 						</div>
