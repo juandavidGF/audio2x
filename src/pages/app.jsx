@@ -56,7 +56,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
 				<DropZone onVideoChange={handleVideoChange} loading={loading} setLoading={setLoading} videoURL={videoURL}/>
-				<button onClick={handleTranslate}>Translate</button>
+				<button onClick={handleTranslate}>{t('Translation')}</button>
       </main>
     </>
   )
