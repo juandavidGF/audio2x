@@ -130,12 +130,12 @@ export default function Home() {
 						<h2><span className={styles.multiCap}>multi-cap</span> <span>{t('title')}</span></h2>
 						<p>{t('subtitle')}<span className={styles.multiCap}> {t('span subtitle')}</span>. </p>
 						<div className={styles.prices}>
-							<p>precios:</p>
+							<p>{t('Prices')}:</p>
 							<ul>
-								<li>5/mes gratis</li>
-								<li>15/mes 5 USD</li>
-								<li>50/mes 10 USD</li>
-								<li>+50/mes personalizado</li>
+								<li>{t('Free')}</li>
+								<li>{t('5USD')}</li>
+								<li>{t('10USD')}</li>
+								<li>{t('Personalizated')}</li>
 							</ul>
 						</div>
 						<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>{t('Get Started')}</button>
