@@ -126,14 +126,17 @@ export default function Home() {
 						</div>
 					) : null}
 				</div>
-					{true ? (
-						<div className={styles.two}>
-							<h2><span className={styles.multiCap}>multi-cap</span> <span>{t('title')}</span></h2>
-							<p>{t('subtitle')}<span className={styles.multiCap}> {t('span subtitle')}</span>. </p>
-							<div/>
-							<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>{t('Get Started')}</button>
+					<div className={styles.two}>
+						<h2><span className={styles.multiCap}>multi-cap</span> <span>{t('title')}</span></h2>
+						<p>{t('subtitle')}<span className={styles.multiCap}> {t('span subtitle')}</span>. </p>
+						<div>
+							<p>precio: 5/mes gratis</p>
+							<p>precio: 15/mes 5 USD</p>
+							<p>precio: 50/mes 10 USD</p>
+							<p>precio: +50/mes personalizado</p>
 						</div>
-					) : null}
+						<button className={styles.getStarted} style={!start ? {visibility: 'visible'} : {visibility: 'collapse'} } onClick={getStarted}>{t('Get Started')}</button>
+					</div>
       </main>
     </>
   )
