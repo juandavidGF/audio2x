@@ -111,7 +111,7 @@ export default function Home() {
 				<div className={styles.one}>
 					{start ? (
 						<div className={styles.formContainer}>
-							{!!suscribted ? (
+							{!suscribted ? (
 								<form className={styles.form} onSubmit={handleSuscription}>
 									<input type="text" name="name" placeholder={t('Full Name')} />
 									<input type="email" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
